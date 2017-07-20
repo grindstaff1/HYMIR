@@ -27,18 +27,15 @@ ss.str("");
 ss << "test.tex.eq" << j+1;
 
 getcoeff(ss.str(),nu[j]);
-for(int uu=0;uu<11;uu++){
-std::cout<<nu[j][uu]<<"\t";
-}
-std::cout<<endl;
+
 }
 
 ofstream out;
 out.open ("output.txt");
-out <<"t\tA\tB\tAB\tC\n"<<"=================================="<<endl;
-for (int i=0;i<10;i++){
+out <<"##\tt\tA\tB\tC\tD\n"<<"##=============================================="<<endl;
+for (int i=0;i<100;i++){
 	t=dt*i;
-	out<<t<<"\t"<<a.n<<"\t"<<b.n<<"\t"<<c.n<<"\t"<<d.n<<endl;
+	out<<"\t"<<t<<"\t"<<a.n<<"\t"<<b.n<<"\t"<<c.n<<"\t"<<d.n<<endl;
 	for(int j=0;j<n_rxn;j++) get_dN(a,b,c,d,e,f,g,h,l,m,o,k2,dt,nu[j],dN);
 	react(a,b,c,d,e,f,g,h,l,m,o,dN);
 }
