@@ -35,6 +35,4 @@ class constants {
 
 };
 
-void getcoeff(std:: string, int[]);
-
 #endif

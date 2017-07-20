@@ -29,6 +29,7 @@ ss << "test.tex.eq" << j+1;
 getcoeff(ss.str(),nu[j]);
 
 }
+reaction rxn1("test.tex.eq1");
 
 ofstream out;
 out.open ("output.txt");
@@ -36,8 +37,8 @@ out <<"##\tt\tA\tB\tC\tD\n"<<"##=============================================="<
 for (int i=0;i<100;i++){
 	t=dt*i;
 	out<<"\t"<<t<<"\t"<<a.n<<"\t"<<b.n<<"\t"<<c.n<<"\t"<<d.n<<endl;
-	for(int j=0;j<n_rxn;j++) get_dN(a,b,c,d,e,f,g,h,l,m,o,k2,dt,nu[j],dN);
-	react(a,b,c,d,e,f,g,h,l,m,o,dN);
+	for(int j=0;j<n_rxn;j++) get_dN(rxn1,dN);
+	react(rxn1);
 }
 out.close();
 return 0;

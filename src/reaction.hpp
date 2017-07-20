@@ -9,17 +9,17 @@ class reaction {
 	
 	public:
 	component reactants[];		//List of Reactants
-	component products[];		//List of Products
 	double k; 					//reaction rate
 	int nu[];					//Reaction coefficients
 	std::string EQFILE;			//File of reaction
 	
-	
+	reaction(std:: string);
 };
 
 
-
-void get_dN(component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,double,double, int[],double[]);
-void react(component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,double[]);
+void getcoeff(std:: string, int[]);
+int get_N_reactants(std::string);
+void get_dN(reaction, double[]);
+void react(reaction);
 
 #endif

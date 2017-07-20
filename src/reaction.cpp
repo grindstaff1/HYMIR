@@ -1,26 +1,87 @@
 #include "reaction.hpp"
-void react(component &a,component &b,component &c,component &d,component &e,component &f,component &g,component &h,component &l,component &m,component &o,double dN[]){
+#include "components.hpp"
+
+reaction::reaction(std:: string e){
+ EQFILE=e;
+ int N = get_N_reactants(EQFILE);
+ reactants[N]=component();
+}
+
+
+int get_N_reactants(std::string eq){
+	int N=0;
+	std::ifstream in;
+	std::string c;
+	in.open(eq.c_str());
+
+	if(in.fail())
+	std::cout<< "ERROR!    Could not open file: "<<c<<"\n";
 	
-	a.n+= dN[0];
-	b.n+= dN[1];
-	c.n+= dN[2];
-	d.n+= dN[3];
-	e.n+= dN[4];
-	f.n+= dN[5];
-	g.n+= dN[6];
-	h.n+= dN[7];
-	l.n+= dN[8];
-	m.n+= dN[9];
-	o.n+= dN[10];
+	while(getline(in,c))
+	{
+		if(c[0]!='<'&&c[0]!='-'&&c[0]!='[') N++;
+	}
+
+	in.close();
+
+	return N;
+}
+
+void getcoeff(std:: string eq, int coeff[]){
+	std::ifstream in;
+	std::string c;
+	in.open(eq.c_str());
+	int g=0;
+	int sgn=-1;
+	if(in.fail())
+	std::cout<< "ERROR!    Could not open file: "<<c<<"\n";
+	
+	while(getline(in,c))
+	{
+		std::size_t found = c.find('>');
+		if (found!=std::string::npos){
+		sgn=1;
+		}
+		if(c[0]!='<'&&c[0]!='-'&&c[0]!='['){
+			if(isdigit(c[0])){
+				coeff[g]=std::stoi(c);
+				coeff[g]*=sgn;
+				g++;
+			}else{
+				coeff[g]=sgn;
+				g++;
+			}
+		}
+	}
+	in.close();
+	
+return;
+}
+
+void react(reaction rxn){
+	
+	int N = get_N_reactants(rxn.EQFILE);
+	
+	for(int i=0;i<N;i++) rxn.reactants[i].n+=rxn.nu[i];
+
 	return;
 }
 
-void get_dN(component &a,component &b,component &c,component &d,component &e,component &f,component &g,component &h,component &l,component &m,component &o,double k,double dt, int fu[],double dN[]){
+
+void get_dN(reaction rxn, double dN[]){
+	
 	
 	double dd;
+	int N = get_N_reactants(rxn.EQFILE);
+
+	dd=rxn.k;
 	
-	dd=dt*k*pow(a.n,max(0,-fu[0]))*pow(b.n,max(0,-fu[1]))*pow(c.n,max(0,-fu[2]))*pow(d.n,max(0,-fu[3]))*pow(e.n,max(0,-fu[4]))*pow(f.n,max(0,-fu[5]))*pow(g.n,max(0,-fu[6]))*pow(h.n,max(0,-fu[7]))*pow(l.n,max(0,-fu[8]))*pow(m.n,max(0,-fu[9]))*pow(o.n,max(0,-fu[10]));
-	for(int i = 0; i < 10; i++) dN[i] = dN[i]+fu[i]*dd;
+	for(int i=0;i<N;i++) {
+	dd *=pow(rxn.reactants[i].n,max(0,-rxn.nu[i]));
+	dN[i]=0;
+	}
+
+	for(int i = 0; i < N; i++) dN[i] = dN[i]+rxn.nu[i]*dd;
 	
 	return;
 }
