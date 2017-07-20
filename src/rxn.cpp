@@ -1,5 +1,5 @@
-#include "rxn.hpp"
-
+#include "reaction.hpp"
+#include "components.hpp"
 int main(){
 
 

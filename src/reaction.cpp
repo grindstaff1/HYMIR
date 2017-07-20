@@ -1,27 +1,4 @@
-#ifndef RXN
-#define RXN
-
-#include <cmath>
-#include <vector>
-#include "components.hpp"
-
-class reaction {
-	
-	public:
-	component reactants[];		//List of Reactants
-	component products[];		//List of Products
-	double k; 					//reaction rate
-	int nu[];					//Reaction coefficients
-	std::string EQFILE;			//File of reaction
-	
-	
-};
-
-
-
-void get_dN(component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,double,double, int[],double[]);
-void react(component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,component&,double[]);
-
+#include "reaction.hpp"
 void react(component &a,component &b,component &c,component &d,component &e,component &f,component &g,component &h,component &l,component &m,component &o,double dN[]){
 	
 	a.n+= dN[0];
@@ -47,6 +24,3 @@ void get_dN(component &a,component &b,component &c,component &d,component &e,com
 	
 	return;
 }
-
-
-#endif
