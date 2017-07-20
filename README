@@ -1,3 +1,13 @@
+HYMIR provides a simple method for time evolving coupled chemical reactions. The reaction schemes can be input directly, or read from a LATEX file using the standard mhchem package.
 
-Theoretically this is where I would put a readme. To be completed later.
-It will describe the code an necessary packages. Give directions for installation and usage.
+# Compiling HYMIR
+
+The current method for compiling the code is as follows:
+
+	$ ./comp
+
+# Running HYMIR
+
+The current method for running the code is as follows:
+
+	$ ./hymir 
