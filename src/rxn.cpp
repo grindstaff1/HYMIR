@@ -7,7 +7,7 @@ double dt,k1,k2,t;
 
 
 std::string s;
-std::stringstream ss;
+//std::stringstream ss;
 int n_rxn;
 
 s="test.tex";
@@ -23,10 +23,10 @@ rxn1.reactants[1].n=25;
 rxn1.reactants[2].n=0;
 
 for(int j=0;j<n_rxn;j++){
-ss.str("");
-ss << "test.tex.eq" << j+1;
+//ss.str("");
+//ss << "test.tex.eq" << j+1;
 
-getcoeff(ss.str(),rxn1.nu);
+getcoeff("test.tex.eq1",rxn1.nu);
 
 }
 

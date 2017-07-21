@@ -3,16 +3,11 @@
 reaction::reaction(std:: string e){
  EQFILE=e;
  int N = get_N_reactants(EQFILE);
- reactants[N]=component();
+ reactants.resize(N);
 }
 
-reaction::~reaction(){
 
-	delete reactants;
-
-}
-
-int get_N_reactants(std::string eq){
+int get_N_reactants(std::string &eq){
 	int N=0;
 	std::ifstream in;
 	std::string c;
@@ -62,7 +57,7 @@ void getcoeff(std:: string eq, int coeff[]){
 return;
 }
 
-void react(reaction rxn, double dN[],double dt){
+void react(reaction &rxn, double dN[],double dt){
 	
 	int N = get_N_reactants(rxn.EQFILE);
 	
@@ -72,7 +67,7 @@ void react(reaction rxn, double dN[],double dt){
 }
 
 
-void get_dN(reaction rxn, double dN[]){
+void get_dN(reaction &rxn, double dN[]){
 	
 	
 	double dd;

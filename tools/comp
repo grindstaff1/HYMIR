@@ -1,0 +1,3 @@
+g++ -std=c++11 -g -O0 *.cpp -o hymir
+cp $1 test.tex
+clear

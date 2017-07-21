@@ -1,7 +1,6 @@
 #ifndef COMP
 #define COMP
 
-#include <string>
 #include <cctype>
 #include <algorithm>
 #include "parser.hpp"
