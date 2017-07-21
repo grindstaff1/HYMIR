@@ -1,5 +1,4 @@
 #include "reaction.hpp"
-#include "components.hpp"
 
 reaction::reaction(std:: string e){
  EQFILE=e;
@@ -7,6 +6,11 @@ reaction::reaction(std:: string e){
  reactants[N]=component();
 }
 
+reaction::~reaction(){
+
+	delete reactants;
+
+}
 
 int get_N_reactants(std::string eq){
 	int N=0;
@@ -58,11 +62,11 @@ void getcoeff(std:: string eq, int coeff[]){
 return;
 }
 
-void react(reaction rxn){
+void react(reaction rxn, double dN[],double dt){
 	
 	int N = get_N_reactants(rxn.EQFILE);
 	
-	for(int i=0;i<N;i++) rxn.reactants[i].n+=rxn.nu[i];
+	for(int i=0;i<N;i++) rxn.reactants[i].n+=dN[i]*dt;
 
 	return;
 }
